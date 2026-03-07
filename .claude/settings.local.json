@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Read(//usr/local/**)",
+      "Read(//Users/julesvallet/.nvm/versions/**)",
+      "Read(//Users/julesvallet/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(command -v node)",
+      "Bash(export PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\")",
+      "Bash(echo $SHELL)",
+      "Bash(echo $PATH)",
+      "Read(//Applications/**)"
+    ]
+  }
+}

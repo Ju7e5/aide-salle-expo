@@ -1,0 +1,96 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Zone {
+  id          String       @id @default(cuid())
+  nom         String
+  description String?
+  couleur     String
+  ordre       Int
+  presentoirs Presentoir[]
+  createdAt   DateTime     @default(now())
+}
+
+model Presentoir {
+  id         String      @id @default(cuid())
+  nom        String
+  type       String      // horizontal, vertical, mural, ambiance
+  zone       Zone        @relation(fields: [zoneId], references: [id])
+  zoneId     String
+  posX       Float
+  posY       Float
+  largeur    Float       @default(80)
+  hauteur    Float       @default(60)
+  statut     String      @default("actif") // actif, depart_planifie, vide, desactive
+  notes      String?
+  references Reference[]
+  rotations  Rotation[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Reference {
+  id           String      @id @default(cuid())
+  reference    String
+  nom          String
+  fournisseur  String
+  format       String
+  matiere      String
+  finition     String
+  couleur      String
+  prixHT       Float
+  prixTTC      Float
+  statut       String      @default("actif") // actif, a_retirer, nouveau
+  photo        String?
+  notes        String?
+  presentoir   Presentoir? @relation(fields: [presentoirId], references: [id])
+  presentoirId String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Rotation {
+  id            String      @id @default(cuid())
+  presentoir    Presentoir  @relation(fields: [presentoirId], references: [id])
+  presentoirId  String
+  description   String
+  datePrevue    DateTime
+  dateEffective DateTime?
+  statut        String      @default("planifie") // planifie, confirme
+  notes         String?
+  createdAt     DateTime    @default(now())
+}
+
+model Membre {
+  id        String   @id @default(cuid())
+  nom       String
+  couleur   String   @default("#B5763A")
+  actif     Boolean  @default(true)
+  ordre     Int
+  createdAt DateTime @default(now())
+}
+
+model Planning {
+  id        String    @id @default(cuid())
+  semaine   String    // format ISO: "2026-W10"
+  tache     String    // petit_dejeuner | menage_wc | menage_pause
+  membreNom String
+  fait      Boolean   @default(false)
+  faitLe    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@unique([semaine, tache])
+}
+
+model Config {
+  id        String   @id @default(cuid())
+  cle       String   @unique
+  valeur    String
+  updatedAt DateTime @updatedAt
+}
