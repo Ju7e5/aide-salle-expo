@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.11.0",
-    "next": "^14.2.0",
+    "next": "14.1.4",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "iron-session": "^8.0.3",
