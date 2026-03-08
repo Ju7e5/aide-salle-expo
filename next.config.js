@@ -6,6 +6,8 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client'],
+    workerThreads: false,
+    cpus: 1,
   },
 }
 
