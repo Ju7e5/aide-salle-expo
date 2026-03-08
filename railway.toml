@@ -1,6 +1,6 @@
 [build]
 builder = "nixpacks"
-buildCommand = "rm -rf .next/cache && npx prisma generate && npm run build"
+buildCommand = "find .next/cache -mindepth 1 -depth -delete 2>/dev/null; npx prisma generate && npm run build"
 
 [deploy]
 startCommand = "npx prisma db push && npm run db:seed && npm start"
