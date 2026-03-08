@@ -169,7 +169,7 @@ export default function Sidebar() {
         </p>
 
         {SETTINGS_ITEMS.map((item) => {
-          const isActive = pathname.startsWith(item.href)
+          const isActive = (pathname ?? '').startsWith(item.href)
           return (
             <Link
               key={item.href}
