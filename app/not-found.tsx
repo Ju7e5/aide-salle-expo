@@ -1,4 +1,4 @@
-import Link from 'next/link'
+export const dynamic = 'force-dynamic'
 
 export default function NotFound() {
   return (
@@ -16,7 +16,7 @@ export default function NotFound() {
     >
       <p style={{ fontSize: 48, fontWeight: 700, color: '#E4E0DA' }}>404</p>
       <p style={{ fontSize: 16, color: '#71717A' }}>Page introuvable</p>
-      <Link
+      <a
         href="/dashboard"
         style={{
           marginTop: 8,
@@ -30,7 +30,7 @@ export default function NotFound() {
         }}
       >
         Retour au dashboard
-      </Link>
+      </a>
     </div>
   )
 }
