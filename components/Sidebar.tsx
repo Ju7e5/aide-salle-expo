@@ -118,7 +118,7 @@ export default function Sidebar() {
         </p>
 
         {NAV_ITEMS.map((item) => {
-          const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))
+          const isActive = pathname === item.href || (item.href !== '/dashboard' && (pathname ?? '').startsWith(item.href))
           return (
             <Link
               key={item.href}
