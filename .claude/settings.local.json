@@ -10,7 +10,8 @@
       "Bash(export PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\")",
       "Bash(echo $SHELL)",
       "Bash(echo $PATH)",
-      "Read(//Applications/**)"
+      "Read(//Applications/**)",
+      "Bash(\"/Users/julesvallet/Desktop/salle expo/app/login/page.tsx\":*)"
     ]
   }
 }
